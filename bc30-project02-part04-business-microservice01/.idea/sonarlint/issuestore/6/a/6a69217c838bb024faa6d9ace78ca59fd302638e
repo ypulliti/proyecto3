@@ -1,0 +1,10 @@
+
+]	java:S125#"<This block of commented-out lines of code should be removed.(üà„¼øÿÿÿÿ8íÇÆª0
+w
+java:S1128"URemove this unused import 'com.nttdata.bootcamp.bank.product.model.document.Product'.(ÇØêÉûÿÿÿÿ8íÇÆª0
+s
+java:S1128"XRemove this unused import 'org.springframework.cloud.netflix.eureka.EnableEurekaClient'.(´÷ÎÉüÿÿÿÿ
+Z
+java:S1128"8Remove this unused import 'reactor.core.publisher.Flux'.(·äÍÆøÿÿÿÿ8îÇÆª0
+A
+java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü

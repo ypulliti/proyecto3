@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ypulliti/config-data.git
+          #searchPaths: config-data
+          username: ypulliti
+          password: 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
+  security:
+    user:
+      name: root
+      password: s3cr3t
+
