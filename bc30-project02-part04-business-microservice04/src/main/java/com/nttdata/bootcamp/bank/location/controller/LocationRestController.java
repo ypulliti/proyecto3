@@ -24,7 +24,7 @@ public class LocationRestController
     @Autowired
     private ApplicationInfoManager applicationInfoManager;
     @Autowired
-    private LocationServiceImpl productServiceInte;
+    private LocationServiceInte productServiceInte;
 
     @PostMapping("create")
     public Mono<Location> create(@RequestBody final Location location) {

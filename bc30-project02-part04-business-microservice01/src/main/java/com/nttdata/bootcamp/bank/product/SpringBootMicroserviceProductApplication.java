@@ -11,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.GroupedFlux;
+import reactor.core.publisher.Mono;
 
+import java.util.Comparator;
 import java.util.Date;
 
 @SpringBootApplication
@@ -29,12 +32,21 @@ public class SpringBootMicroserviceProductApplication implements CommandLineRunn
     @Override
     public void run(String... args) throws Exception {
         log.info("Init Product");
-        // code to fix database and generate sample data
-        /*Flux.just(
-                new Product("2","credito empresarial", "credito", "1", "0", "0", "", "", "", "",1, 1)
+
+        //var productos = dao.findAll().count().block();
+        //productos.subscribe(c -> log.info(String.valueOf(c)));
+
+        //Insert products
+        Flux.just(
+                new Product("2","002", "credito empresarial", "1", "0", "0", "", "", "", "",1, 1),
+                new Product("1","001", "credito personal", "1", "0", "0", "", "", "", "",1, 1),
+                new Product("3","002", "ahorro", "1", "0", "0", "", "", "", "",1, 1),
+                new Product("4","001", "cuenta corriente", "1", "0", "0", "", "", "", "",1, 1),
+                new Product("5","002", "plazo fijo", "1", "0", "0", "", "", "", "",1, 1),
+                new Product("6","001", "monedero", "1", "0", "0", "", "", "", "",1, 1)
                 )
                 .flatMap(c -> dao.save(c))
-                .subscribe(c -> log.info("Insert: " + c.getId() + " " + c.getName()));*/
+                .subscribe(c -> log.info("Insert: " + c.getId() + " " + c.getName()));
     }
 
 }

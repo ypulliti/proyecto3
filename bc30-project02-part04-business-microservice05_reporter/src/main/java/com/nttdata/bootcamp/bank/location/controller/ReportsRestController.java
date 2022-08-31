@@ -1,6 +1,7 @@
 package com.nttdata.bootcamp.bank.location.controller;
 
 import com.netflix.discovery.converters.Auto;
+import com.nttdata.bootcamp.bank.location.kafkaConfig.KafkaStringConfig;
 import com.nttdata.bootcamp.bank.location.model.document.Customer;
 import com.nttdata.bootcamp.bank.location.model.document.Location;
 import com.nttdata.bootcamp.bank.location.model.document.PassiveOperation;
@@ -13,6 +14,7 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,16 +23,26 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/reports")
 public class ReportsRestController
 {
-
     @RequestMapping("name")
     public String getMicroserviceName()
     {
-
         return "Hello";
     }
 
+    private KafkaStringConfig kafkaStringConfig;
+
     private final WebClient webClient;
     private final WebClient webClientCustomer;
+
+    @Autowired
+    ReportsRestController(KafkaStringConfig kafkaStringConfig, WebClient.Builder webClientBuilder)
+    {
+        this.kafkaStringConfig = kafkaStringConfig;
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8088").build();
+        this.webClientCustomer = webClientBuilder.baseUrl("http://localhost:8080").build();
+    }
+
+
 
     public ReportsRestController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("http://localhost:8088").build();
@@ -38,15 +50,6 @@ public class ReportsRestController
     }
 
     private static final Logger log = LoggerFactory.getLogger(ReportsRestController.class);
-
-    @Autowired
-    private LocationServiceInte productServiceInte;
-
-    @PostMapping("create")
-    public Mono<Location> create(@RequestBody final Location location) {
-        log.debug("Begin RestController create Location");
-        return productServiceInte.create(location);
-    }
 
     @GetMapping("getLocations")
     public Flux<Location> readAll() {
@@ -104,24 +107,6 @@ public class ReportsRestController
         });
 
         return myflux;
-    }
-
-    @GetMapping("/readByCodeLocation/{codeProduct}")
-    public Mono<Location> readByCodeLocation(@PathVariable String codeLocation) {
-        log.debug("Begin RestController findByCodeProduct Location");
-        return productServiceInte.readByCodeLocation(codeLocation);
-    }
-
-    @PutMapping("update/{id}")
-    public Mono<Location> updateById(@RequestBody final Location location, @PathVariable("id") final String id) {
-        log.debug("Begin RestController updateById Location");
-        return productServiceInte.updateById(id, location);
-    }
-
-    @DeleteMapping("delete/{id}")
-    public Mono<Void> deleteById(@PathVariable final String id) {
-        log.debug("Begin RestController deleteById Location");
-        return productServiceInte.deleteById(id);
     }
 
 }

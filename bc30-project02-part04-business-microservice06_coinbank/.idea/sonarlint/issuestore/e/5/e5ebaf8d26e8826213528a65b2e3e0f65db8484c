@@ -1,0 +1,13 @@
+
+
+java:S1488-"dImmediately return this expression instead of assigning it to the temporary variable "fluxLocation".(æã°Ãøÿÿÿÿ
+†
+java:S14887"dImmediately return this expression instead of assigning it to the temporary variable "fluxLocation".(æã°Ãøÿÿÿÿ8çÛ¤´¬0
+[
+java:S4684$"@Replace this persistent entity with a simple POJO or DTO object.(İöû­ÿÿÿÿÿ
+T
+java:S18545"8Remove this useless assignment to local variable "http".(Ãâî.8øÛ¤´¬0
+E
+java:S14815")Remove this unused "http" local variable.(Ãâî.8ùÛ¤´¬0
+V
+java:S4684C"@Replace this persistent entity with a simple POJO or DTO object.(¢ò¤§
